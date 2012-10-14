@@ -18,4 +18,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_dependency("rest-client", ["~>1.6.7"])
+  gem.add_development_dependency("mocha")
+  gem.add_development_dependency("shoulda")
 end
