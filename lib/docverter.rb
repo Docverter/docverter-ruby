@@ -40,7 +40,6 @@ module Docverter
 
   def self.request(method, url, params={}, headers={})
     key = @@api_key
-    raise AuthenticationERror.new('No API key provided. (HINT: set your API key using "Docverter.api_key = <API-KEY>". You can find your API in the Docverter web interface. See http://www.docverter.com/api.html for details, or email pete@docverter.com if you have any questions.)') unless key
 
     url = self.api_url(url)
 
