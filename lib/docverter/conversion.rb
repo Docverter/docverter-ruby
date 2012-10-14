@@ -118,6 +118,7 @@ module Docverter
         temp.write self.content
         temp.flush
         self.add_input_file(temp.path)
+        self.content = nil
       end
 
       response = Docverter.request(:post, "/convert", self.to_h)
