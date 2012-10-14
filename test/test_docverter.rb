@@ -121,5 +121,44 @@ class TestDocverter < Test::Unit::TestCase
       end
     end
 
+    should "make async request" do
+      temp = Tempfile.new("foo")
+
+      @mock.expects(:post).with do |url, blah, params|
+        url == "https://test_key:@api.docverter.com/v1/convert" \
+        && params[:from] == 'markdown' \
+        && params[:to] == 'pdf' \
+        && params[:other_files] == [] \
+        && params[:input_files][0].path == temp.path \
+        && params[:callback_url] == 'http://www.google.com'
+      end.returns(test_response('{"status": "pending", "id": 123}'))
+
+      res = Docverter::Conversion.run do |c|
+        c.from = "markdown"
+        c.to = "pdf"
+        c.callback_url = 'http://www.google.com'
+        c.add_input_file(temp.path)
+
+      end
+
+      expected = {'id' => 123, 'status' => 'pending'}
+
+      assert_equal expected, res
+    end
+
+    should "pickup" do
+      @mock.expects(:get).with("https://test_key:@api.docverter.com/v1/pickup/1", nil, {}).returns(test_response("foo"))
+      res = Docverter::Conversion.pickup(1)
+      assert_equal "foo", res
+    end
+
+    should "status" do
+      @mock.expects(:get).with("https://test_key:@api.docverter.com/v1/status/1", nil, {}).returns(test_response('{"status": "pending", "id": 1}'))
+      res = Docverter::Conversion.status(1)
+      expected = {"status" => "pending", "id" => 1}
+      assert_equal expected, res
+    end
+
   end
+
 end
