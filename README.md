@@ -1,6 +1,6 @@
-# Docverter::Api
+# Docverter
 
-TODO: Write a gem description
+This is the official Docverter Ruby API.
 
 ## Installation
 
@@ -18,7 +18,29 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+First, sign up for [Docverter](http://www.docverter.com) and get your API key.
+
+Set your API key before using any of the rest of the library:
+
+    Docverter.api_key = <API-KEY>
+
+In a Rails project, put this in an initializer.
+
+A few example conversions:
+
+    Docverter::Conversion.run("markdown", "html", "Some Content")
+    # => "<html><body><p>Some Content</p></body></html>"
+
+    Docverter::Conversion.run do |c|
+      c.from    = "markdown"
+      c.to      = "html"
+      c.content = "Some Content"
+      c.stylesheet = "stylesheet.css"
+      c.add_other_file "stylesheet.css"
+    end
+    # => '<html><head><link rel="stylesheet" media="print" href="stylesheet.css"></head><body><p>Some Content</p></body></html>'
+    
+See the documentation for `Docverter::Conversion` for more details.
 
 ## Contributing
 
