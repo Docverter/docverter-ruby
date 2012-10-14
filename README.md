@@ -6,7 +6,7 @@ This is the official Docverter Ruby API.
 
 Add this line to your application's Gemfile:
 
-    gem 'docverter-api'
+    gem 'docverter'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install docverter-api
+    $ gem install docverter
 
 ## Usage
 
