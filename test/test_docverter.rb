@@ -21,6 +21,14 @@ class TestDocverter < Test::Unit::TestCase
     end
   end
 
+  should "not raise if no api key given and base url changed" do
+    Docverter.api_key = nil
+    Docverter.base_url = 'http://localhost:9595/convert'
+    assert_nothing_raised do
+      Docverter.api_url
+    end
+  end
+
   should "have default base url" do
     assert_equal "https://test_key:@api.docverter.com/v1", Docverter.api_url
   end

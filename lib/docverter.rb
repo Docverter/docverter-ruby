@@ -23,9 +23,9 @@ module Docverter
   def self.api_url(path='')
     u = URI(@@base_url + path)
     key = self.api_key
-    raise AuthenticationError.new('No API key provided. (HINT: set your API key using "Docverter.api_key = <API-KEY>". You can find your API in the Docverter web interface. See http://www.docverter.com/api.html for details, or email pete@docverter.com if you have any questions.)') unless key
-    u.user = key
-    u.password = ''
+    raise AuthenticationError.new('No API key provided. (HINT: set your API key using "Docverter.api_key = <API-KEY>". You can find your API in the Docverter web interface. See http://www.docverter.com/api.html for details, or email pete@docverter.com if you have any questions.)') if key.nil? && @@base_url == 'https://api.docverter.com/v1'
+    u.user = key if key
+    u.password = '' if key
     u.to_s
   end
 
@@ -35,7 +35,7 @@ module Docverter
 
   def self.reset
     @@api_key = nil
-    @@override_url = nil
+    @@base_url = 'https://api.docverter.com/v1'
   end
 
   def self.request(method, url, params={}, headers={})
