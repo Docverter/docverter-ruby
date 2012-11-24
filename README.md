@@ -18,11 +18,11 @@ Or install it yourself as:
 
 ## Usage
 
-First, sign up for [Docverter](http://www.docverter.com) and get your API key.
+First, install [Docverter Server](https://github.com/docverter/docverter). 
 
-Set your API key before using any of the rest of the library:
+Set your base url before using any of the rest of the library:
 
-    Docverter.api_key = <API-KEY>
+    Docverter.base_url = <BASE-URL>
 
 In a Rails project, put this in an initializer.
 
