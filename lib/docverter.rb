@@ -86,7 +86,7 @@ module Docverter
   end
 
   def self.handle_api_error(code, body)
-    obj = Docverter::OkJson.decode(body)
+    obj = Docverter::OkJson.decode(body) rescue {'error' => body}
     raise APIError.new("Docverter API Error: #{obj['error']} (status: #{code})")
   end
 
