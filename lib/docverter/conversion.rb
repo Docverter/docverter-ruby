@@ -88,7 +88,7 @@ module Docverter
         :to => to,
         :content => content,
         :input_files => [],
-        :other_files => [],
+        :other_files => []
       )
     end
 
