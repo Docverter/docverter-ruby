@@ -10,7 +10,7 @@ module Docverter
   class APIError < StandardError; end
 
   @@api_key = nil
-  @@base_url = "https://api.docverter.com/v1"
+  @@base_url = "http://c.docverter.com"
   
   def self.api_key
     @@api_key
