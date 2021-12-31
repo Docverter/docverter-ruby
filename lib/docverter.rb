@@ -35,7 +35,7 @@ module Docverter
 
   def self.reset
     @@api_key = nil
-    @@base_url = 'https://api.docverter.com/v1'
+    @@base_url = 'http://c.docverter.com'
   end
 
   def self.request(method, url, params={}, headers={})
@@ -103,4 +103,3 @@ module Docverter
     raise APIConnectionError.new(message)
   end
 end
-
